@@ -66,7 +66,7 @@ export default {
   }
   .past-booking{
     margin-bottom: 10px;
-    display: block;
+    display: inline-block;
     color:black;
   }
   .booking-list{

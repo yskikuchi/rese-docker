@@ -142,12 +142,16 @@ export default {
           this.$router.push('/mypage');
         }
       }catch(e){
-        // console.log(e.response.data.errors);
-        const resData = e.response.data;
-        Object.keys(resData.errors).forEach((key) =>{
-          this.errors[key] = resData.errors[key][0];
-        })
-        this.processing = false;
+        if(e.response.data.errors){
+          const resData = e.response.data;
+          Object.keys(resData.errors).forEach((key) =>{
+            this.errors[key] = resData.errors[key][0];
+          })
+          this.processing = false;
+        }else{
+          alert('既に代金をお支払い済のため、このページからは変更できません。お手数ですが、店舗へ直接お電話して頂き、変更手続きをしてください。')
+          this.processing = false;
+        }
       }
     }
   }

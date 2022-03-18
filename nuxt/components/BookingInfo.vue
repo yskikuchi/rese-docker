@@ -27,7 +27,8 @@
             <td>{{booking.menu.name}}</td>
           </tr>
         </table>
-        <NuxtLink class="change-booking" :to="{path:'bookings/' + booking.id}">日時、人数を変更する</NuxtLink>
+        <span v-if="booking.checked == 1">※変更の際は店舗へ直接ご連絡ください</span>
+        <NuxtLink v-if="booking.checked == 0" class="change-booking" :to="{path:'bookings/' + booking.id}">日時、人数を変更する</NuxtLink>
         <button class="qr-btn" @click="toggleIsShowQR">QRコードを表示</button>
         <div class="qrcode-wrapper" v-show="isShowQR">
           <div class="qrcode-content">

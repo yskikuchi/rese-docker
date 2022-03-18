@@ -81,8 +81,12 @@ class BookingController extends Controller
             'time' => $request -> time,
             'number_of_people' => $request -> number_of_people,
         ];
-        $item = Booking::where('id', $id)->update($update);
+        $item = Booking::where('id', $id)
+        ->where('checked', false)
+        ->first();
+
         if ($item) {
+            $item -> update($update);
             return response()->json([
                 'message' => 'Updated successfully',
             ], 200);
