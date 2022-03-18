@@ -22,7 +22,7 @@ class PaymentController extends Controller
             'line_items'           => [[
                 'name'        => $shop->name,                           // 商品名
                 'description' => $menu->name,        // 説明
-                'amount'      => $menu->price,                                 // 金額
+                'amount'      => $menu->price,                        // 金額
                 'currency'    => 'jpy',                               // 単位
                 'quantity'    => $request->number_of_people,           // 数量
             ]],

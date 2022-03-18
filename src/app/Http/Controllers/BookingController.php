@@ -101,8 +101,12 @@ class BookingController extends Controller
      */
     public function destroy($id)
     {
-        $item = Booking::find($id)->delete();
+        $item = Booking::where('id', $id)
+        ->where('checked', false) //支払い済は削除不可
+        ->first();
+
         if ($item) {
+            $item->delete();
             return response()->json([
             'message' => 'Deleted successfully',
         ], 200);

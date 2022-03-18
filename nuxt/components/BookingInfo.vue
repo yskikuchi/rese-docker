@@ -84,11 +84,15 @@ export default {
       if(this.processing){
         return;
       }
-      if(confirm('予約'+index +'を削除してよろしいですか？')){
-        this.processing = true;
-        await this.$axios.delete('api/booking/' + id);
-        await this.$store.dispatch('getMyBookings');
-        this.processing = false;
+      try{
+        if(confirm('予約'+index +'を削除してよろしいですか？')){
+          this.processing = true;
+          await this.$axios.delete('api/booking/' + id);
+          await this.$store.dispatch('getMyBookings');
+          this.processing = false;
+        }
+      }catch(e){
+        alert('既に代金をお支払い済のため、このページからはキャンセルできません。お手数ですが、店舗へ直接お電話して頂き、キャンセル手続きをしてください。')
       }
     },
     toggleIsShowQR: function(){
