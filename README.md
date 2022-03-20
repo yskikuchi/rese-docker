@@ -52,29 +52,25 @@ $ git clone https://github.com/yskikuchi/rese-docker
 $ cd rese-docker
 $ cp .env.local.example .env
 ```
-.envに必要情報を入力
+
+```
+$ docker compose up -d --build
+```
 
 ### 1. Nuxt
 
 ```
-$ cd nuxt/
-$ yarn install
-
+$ cd nuxt
 $ cp .env.local.example .env
 ```
 
 ### 2. laravel
 
 ```
-$ docker compose up -d
-```
-
-```
-$ cd src
+$ docker compose exec php /bin/bash
 $ composer install
 $ cp .env.local.example .env
-
-$ php artisan key:generate
+$ php artisan key:migrate
 ```
 
 .envファイルのデータベースを修正後

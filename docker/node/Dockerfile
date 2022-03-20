@@ -1,4 +1,4 @@
-FROM node:14.15.0-alpine
+FROM node:16.14-alpine
 RUN mkdir -p /var/www/nuxt
 # timezone
 ARG TZ
