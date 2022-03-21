@@ -97,7 +97,7 @@ export default {
     }
   },
   async created(){
-    const resData = await this.$axios.get('/api/shops/' + this.$route.params.shopId);
+    const resData = await this.$axios.get('/shops/' + this.$route.params.shopId);
     this.shop = resData.data.data;
     const topImage = this.shop.images.filter(e => e.type == 'トップ');
     const path = topImage[0].path;

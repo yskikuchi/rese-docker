@@ -1,6 +1,6 @@
 <template>
   <div class="login-wrapper">
-    <p class="login-ttl">Login</p>
+    <p class="login-ttl">管理者ログイン</p>
     <form @submit.prevent="login" class="login-form">
         <div>
           <input type="email" name="email" placeholder="Email" v-model="form.email" required>
@@ -11,7 +11,6 @@
         <div>
           <button class="login-btn" type="submit">ログイン</button>
         </div>
-        <p class="to-register"><NuxtLink to="/register">会員登録はこちら</NuxtLink></p>
     </form>
   </div>
 </template>
@@ -34,7 +33,7 @@ export default {
       }
       try{
         this.processing = true;
-        await this.$auth.loginWith("cookie",{
+        await this.$auth.loginWith("laravelSanctum",{
           data:this.form,
         });
       }catch(e){
@@ -48,7 +47,7 @@ export default {
 
 <style>
     .login-ttl{
-        background:royalblue;
+        background:orange;
         color:white;
         padding:15px 20px;
         font-size:25px;

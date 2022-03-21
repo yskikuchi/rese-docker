@@ -46,17 +46,36 @@ export default {
     'nuxt-stripe-module',
   ],
   auth: {
+    // strategies: {
+    //   laravelSanctum: {
+    //     provider: 'laravel/sanctum',
+    //     url: process.env.API_URL,
+    //   },
+    // },
     strategies: {
-      laravelSanctum: {
-        provider: 'laravel/sanctum',
-        url: process.env.API_URL,
-      },
+      cookie: {
+        cookie: {
+          name: 'XSRF-TOKEN'
+        },
+        endpoints: {
+          csrf: { url: '/sanctum/csrf-cookie', method: 'get' },
+          login: { url: '/login', method: 'post', propertyName: false },
+          user: { url: '/user', method: 'get', propertyName: false },
+          logout: false
+        },
+        tokenRequired: false,
+        tokenType: false,
+        user: {
+          property: false
+        }
+      }
     },
   },
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL:process.env.API_URL,
+    proxy: true,
+    prefix: process.env.API_BASE_URL,
     credentials: true,
   },
   router: {

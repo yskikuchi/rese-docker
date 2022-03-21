@@ -45,7 +45,7 @@ export default {
     }
   },
   async mounted(){
-    const resData = await this.$axios.get('/api/images/' + this.$route.params.shopId);
+    const resData = await this.$axios.get('/images/' + this.$route.params.shopId);
     this.images = resData.data.data;
     this.exteriorImages = this.images.filter(e => e.type == '外観');
     this.interiorImages = this.images.filter(e => e.type == '店内');
