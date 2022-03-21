@@ -154,7 +154,7 @@ export default {
         this.setSendData();
         if(confirm('この内容で予約してよろしいですか？')){
           this.processing = true;
-          await this.$axios.post("/api/booking",this.sendData);
+          await this.$axios.post("/booking",this.sendData);
           this.$router.push('/done');
         }
       }catch(e){
@@ -174,7 +174,7 @@ export default {
         this.setSendData();
         if(confirm('この内容で予約してよろしいですか？　予約完了後、事前決済ページへ移動します')){
           this.processing = true;
-          const res = await this.$axios.post("/api/booking",this.sendData);
+          const res = await this.$axios.post("/booking",this.sendData);
           const bookingId = res.data.data.id;
           this.sendData['booking_id'] = bookingId;
           await this.redirectToCheckout(this.sendData);
@@ -190,7 +190,7 @@ export default {
     },
     async redirectToCheckout(bookingInfo){
       try{
-        const res = await this.$axios.post('/api/pay',bookingInfo);
+        const res = await this.$axios.post('/pay',bookingInfo);
         const sessionId = res.data.data.id;
         await this.$stripe.redirectToCheckout({
           sessionId : sessionId
